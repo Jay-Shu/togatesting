@@ -3,12 +3,14 @@ Intended for testing various features with Toga.
 """
 import tracemalloc
 import toga
-import pyodbc
+
+import toga.sources
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW, CENTER
 from toga.sources import TreeSource
 
-#from togatesting.poc import GetAccounts
+from togatesting.poc import *
+from togatesting.paca_listeners import *
 
 tracemalloc.start()
 
@@ -145,16 +147,16 @@ class TogaTesting(toga.App):
         self.windows.add(second_window)
         second_window.show()
 
-def init_connection():
+""" def init_connection():
         cnxn = pyodbc.connect(
                 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;DATABASE=PACA;UID=pacauser;PWD=pacauser;TrustServerCertificate=YES;Encrypt=YES', autocommit=True)
         cnxn.setencoding('utf-8')
             #params = None
-        return cnxn
+        return cnxn """
 
 def getAccounts():
         try:
-            conn = init_connection()
+            conn = PythonListener.init_connection()
             cursor = conn.cursor()
             cursor.execute("{CALL paca.getAccounts_v1}")
             #cursor.commit()
@@ -166,8 +168,10 @@ def getAccounts():
             print(ERROR)
         finally:
             cursor.close()
-            conn.close()
+            #conn.close()
+            #PythonListener.disconnect_connection(conn)
         return data
+
 
 def main():
     return TogaTesting()
