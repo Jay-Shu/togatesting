@@ -1,0 +1,51 @@
+INFO:root:<toga.sources.list_source.ListSource object at 0x000002ABF9E1D5E0>
+INFO:root:<toga.sources.list_source.ListSource object at 0x00000197719E1640>
+base_events.py 1805 2024-09-30 16:39:18,740 Exception in callback App._startup()
+handle: <Handle App._startup() created at C:\Python312\Lib\site-packages\toga_winforms\app.py:127>
+source_traceback: Object created at (most recent call last):
+  File "C:\Python312\Lib\site-packages\toga_winforms\app.py", line 161, in _run_app
+    self.create()
+  File "C:\Python312\Lib\site-packages\toga_winforms\app.py", line 127, in create
+    self.loop.call_soon_threadsafe(self.interface._startup) base_events 740
+Traceback (most recent call last):
+  File "C:\Python312\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python312\Lib\site-packages\toga\app.py", line 652, in _startup
+    self.startup()
+  File "E:\scripts\python\togatesting\src\togatesting\app.py", line 29, in startup
+    logging.INFO(self.app)
+TypeError: 'int' object is not callable
+app.py 76 2024-09-30 16:39:49,645 <toga.sources.list_source.ListSource object at 0x000002A418041100> app 645
+app.py 76 2024-09-30 17:01:52,453 [('ICA00000001', None, 'Robert', 'Plant', None, '1346 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 23000), datetime.datetime(2025, 8, 18, 20, 11, 30, 23000), 'Car Insurance - Standalone'), ('ICA00000002', None, 'Jimmy', 'Page', None, '1348 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 27000), datetime.datetime(2025, 8, 18, 20, 11, 30, 27000), 'Car Insurance - Bundle Home'), ('ICA00000003', None, 'John', 'Bonham', None, '1350 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 27000), datetime.datetime(2025, 8, 18, 20, 11, 30, 27000), 'Home - Standalone'), ('ICA00000004', None, 'John Paul', 'Jones', None, '1352 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 27000), datetime.datetime(2025, 8, 18, 20, 11, 30, 27000), 'Home - Bundle Car Insurance')] app 453
+app.py 76 2024-09-30 17:11:39,396 [('ICA00000001', None, 'Robert', 'Plant', None, '1346 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 23000), datetime.datetime(2025, 8, 18, 20, 11, 30, 23000), 'Car Insurance - Standalone'), ('ICA00000002', None, 'Jimmy', 'Page', None, '1348 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 27000), datetime.datetime(2025, 8, 18, 20, 11, 30, 27000), 'Car Insurance - Bundle Home'), ('ICA00000003', None, 'John', 'Bonham', None, '1350 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 27000), datetime.datetime(2025, 8, 18, 20, 11, 30, 27000), 'Home - Standalone'), ('ICA00000004', None, 'John Paul', 'Jones', None, '1352 Zeppelin Ct.', None, 'Kansas City', 'Kansas', 66025, None, datetime.datetime(2024, 8, 17, 20, 11, 30, 27000), datetime.datetime(2025, 8, 18, 20, 11, 30, 27000), 'Home - Bundle Car Insurance')] app 396
+app.py 96 2024-09-30 17:11:39,410 Table initialized app 410
+app.py 96 2024-09-30 17:32:48,137 Table initialized app 137
+app.py 99 2024-09-30 17:55:03,945 '<' not supported between instances of 'int' and 'tuple' app 945
+app.py 99 2024-09-30 17:57:47,892 '<' not supported between instances of 'int' and 'tuple' app 892
+app.py 94 2024-09-30 18:00:48,549 '<' not supported between instances of 'int' and 'tuple' app 549
+app.py 95 2024-09-30 18:02:03,709 '<' not supported between instances of 'int' and 'TogaTesting' app 709
+app.py 96 2024-09-30 18:02:53,988 '<' not supported between instances of 'int' and 'TogaTesting' app 988
+base_events.py 1805 2024-09-30 22:19:42,030 Exception in callback App._startup()
+handle: <Handle App._startup() created at C:\Python312\Lib\site-packages\toga_winforms\app.py:127>
+source_traceback: Object created at (most recent call last):
+  File "C:\Python312\Lib\site-packages\toga_winforms\app.py", line 161, in _run_app
+    self.create()
+  File "C:\Python312\Lib\site-packages\toga_winforms\app.py", line 127, in create
+    self.loop.call_soon_threadsafe(self.interface._startup) base_events 30
+Traceback (most recent call last):
+  File "C:\Python312\Lib\asyncio\events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python312\Lib\site-packages\toga\app.py", line 652, in _startup
+    self.startup()
+  File "E:\scripts\python\togatesting\src\togatesting\app.py", line 31, in startup
+    table = toga.Table(headings=[])
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\toga\widgets\table.py", line 123, in __init__
+    self.data = data
+    ^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\toga\widgets\table.py", line 163, in data
+    self._data = ListSource(accessors=self._accessors, data=[])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\toga\sources\list_source.py", line 117, in __init__
+    raise ValueError("ListSource must be provided a list of accessors")
+ValueError: ListSource must be provided a list of accessors

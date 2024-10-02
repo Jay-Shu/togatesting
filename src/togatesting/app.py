@@ -3,26 +3,39 @@ Intended for testing various features with Toga.
 """
 import tracemalloc
 import toga
+import time
+import logging
+logger = logging.getLogger(__name__)
 
 import toga.sources
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW, CENTER
-from toga.sources import TreeSource
+from toga.sources import ListSource
 
 from togatesting.poc import *
 from togatesting.paca_listeners import *
+from togatesting.function_library.accounts import *
 
 tracemalloc.start()
 
 class TogaTesting(toga.App):
     def startup(self):
+        logging.basicConfig(
+            filename='E:\\scripts\\python\\togatesting\\togatesting.log',
+            level=logging.DEBUG,
+            format='%(filename)s %(lineno)d %(asctime)s %(message)s %(module)s %(msecs)d'
+            )
         self.app = toga.App
+        #logging.INFO(self.app)
         """Construct and show the Toga application.
+       
+        https://docs.python.org/3.12/library/logging.html#logrecord-attributes
 
         Usually, you would add your application to a main content box.
         We then create a main window (with a name matching the app), and
         show the main window.
         """
+        #PythonSources._create_listeners(self)
         main_box = toga.Box(style=Pack(direction=COLUMN))
         
         #accountsLabel = toga.Label('Main Section')
@@ -47,36 +60,8 @@ class TogaTesting(toga.App):
         self.main_window.show()
 
     def _accounts_callback(self,widget):
-    # Create the second window
-        second_window = toga.Window(title="Accounts")
-        #second_label = toga.Label("This is the second window", style=Pack(padding=10))
-        second_box = toga.Box(children=[], style=Pack(direction=COLUMN,alignment=CENTER,font_size=14))
-        columns = ['ACCOUNT_NUM', 'ACCOUNT_HONORIFICS', 'ACCOUNT_FIRST_NAME', 'ACCOUNT_LAST_NAME', 'ACCOUNT_SUFFIX', 'ACCOUNT_STREET_ADD_1',
-                   'ACCOUNT_STREET_ADD_2', 'ACCOUNT_CITY', 'ACCOUNT_STATE', 'ACCOUNT_ZIP', 'ACCOUNT_PO_BOX', 'ACCOUNT_DATE_START', 'ACCOUNT_DATE_RENEWAL', 'ACCOUNT_TYPE']
+        AccountsClass.accounts_secondary_box(self,widget)
         
-        # Call the method to fetch data from the stored procedure
-        data = getAccounts()
-        label = toga.Label('Accounts Results',style=Pack(padding=10,font_size=14))
-        second_box.add(label)
-        
-        if data:
-        # Populate the table with data
-            table = toga.Table(headings=columns, style=Pack(flex=1,font_size=14))
-            second_box.add(table)
-        
-        else:
-            error_label = toga.Label('No data found or an error occurred.',style=Pack(padding=10,font_size=14))
-            second_box.add(error_label)
-
-        self.content = second_box
-        
-    
-    # Add the second box (content) to the second window
-        #second_window.content = second_box
-        #second_window.content = GetAccounts()
-    # Show the second window
-        self.windows.add(second_window)
-        second_window.show()
 
     def _homes_callback(self,widget):
     # Create the second window
@@ -146,31 +131,6 @@ class TogaTesting(toga.App):
     # Show the second window
         self.windows.add(second_window)
         second_window.show()
-
-""" def init_connection():
-        cnxn = pyodbc.connect(
-                'DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1;DATABASE=PACA;UID=pacauser;PWD=pacauser;TrustServerCertificate=YES;Encrypt=YES', autocommit=True)
-        cnxn.setencoding('utf-8')
-            #params = None
-        return cnxn """
-
-def getAccounts():
-        try:
-            conn = PythonListener.init_connection()
-            cursor = conn.cursor()
-            cursor.execute("{CALL paca.getAccounts_v1}")
-            #cursor.commit()
-            #rows = cursor.fetchall()
-            data = [(row.ACCOUNT_NUM, row.ACCOUNT_HONORIFICS, row.ACCOUNT_FIRST_NAME,row.ACCOUNT_LAST_NAME, row.ACCOUNT_SUFFIX,row.ACCOUNT_STREET_ADD_1,row.ACCOUNT_STREET_ADD_2,row.ACCOUNT_CITY,row.ACCOUNT_STATE,row.ACCOUNT_ZIP,row.ACCOUNT_PO_BOX,row.ACCOUNT_DATE_START,row.ACCOUNT_DATE_RENEWAL,row.ACCOUNT_TYPE) for row in cursor.fetchall()]
-            return data
-
-        except Exception as ERROR:
-            print(ERROR)
-        finally:
-            cursor.close()
-            #conn.close()
-            #PythonListener.disconnect_connection(conn)
-        return data
 
 
 def main():
